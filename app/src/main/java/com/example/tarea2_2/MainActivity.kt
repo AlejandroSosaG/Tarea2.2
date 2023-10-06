@@ -9,15 +9,19 @@ import com.example.tarea2_2.databinding.ActivityMainBinding
 import com.example.tarea2_2.databinding.CalculadoraBinding
 
 class MainActivity : AppCompatActivity() {
-    var usuario: String = "ale"
-    var contraseña: String = "1234"
+    val usuario: String = "ale"
+    val contraseña: String = "1234"
     var sol: Double = 0.0
-
+    var num1: Double = 0.0
+    var num2: Double = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val main = ActivityMainBinding.inflate(layoutInflater)
         val calculadora = CalculadoraBinding.inflate(layoutInflater)
         setContentView(main.root)
+        /**
+         * Método que pasa a la pantalla de calculadora.
+         */
         main.acceder.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?){
                 if (usuario == main.completaUsuario.text.toString() && contraseña == main.completaContraseA.text.toString()) {
@@ -27,55 +31,89 @@ class MainActivity : AppCompatActivity() {
                         "Estoy en calculadora",
                         Toast.LENGTH_SHORT
                     ).show()
+                }else{
+                    val toast = Toast.makeText(applicationContext, "Usuario o contraseña incorrecto", Toast.LENGTH_LONG).show()
                 }
             }
         })
+        /**
+         * Método que vuelve a la pantalla de login.
+         */
         calculadora.Vuelta.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
                 setContentView(main.root)
                 val main = Toast.makeText(applicationContext, "Estoy en main", Toast.LENGTH_SHORT).show()
             }
         })
+        /**
+         * Método que calcula la suma del primer número más el segundo.
+         */
         calculadora.mas.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-                sol = calculadora.numero1.text.toString().toDouble() + calculadora.numero2.text.toString().toDouble()
+                num1 = comprobarNulos()
+                num2 = comprobarNulos2()
+                sol = num1 + num2
                 calculadora.sol.text = sol.toString()
             }
         })
+        /**
+         * Método que calcula la resta del primer número menos el segundo.
+         */
         calculadora.menos.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-                sol = calculadora.numero1.text.toString().toDouble() - calculadora.numero2.text.toString().toDouble()
+                num1 = comprobarNulos()
+                num2 = comprobarNulos2()
+                sol = num1 - num2
                 calculadora.sol.text = sol.toString()
             }
         })
+        /**
+         * Método que calcula la multiplicación del primer número por el segundo.
+         */
         calculadora.por.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-                sol = calculadora.numero1.text.toString().toDouble() * calculadora.numero2.text.toString().toDouble()
+                num1 = comprobarNulos()
+                num2 = comprobarNulos2()
+                sol = num1 * num2
                 calculadora.sol.text = sol.toString()
             }
         })
+        /**
+         * Método que calcula la división del primer número entre el segundo.
+         */
         calculadora.entre.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-                if (comprobarNulos() == true)
-                    sol = calculadora.numero1.text.toString().toDouble() / calculadora.numero2.text.toString().toDouble()
+                num1 = comprobarNulos()
+                num2 = comprobarNulos2()
+                if (num2!=0.0)
+                    sol = num1 / num2
+                else
+                    sol = "No se puede hacer".toDouble()
+
                 calculadora.sol.text = sol.toString()
             }
         })
-
     }
 
-    private fun comprobarNulos(): Boolean {
+    /**
+     * Método que comprueba si el segundo factor es nulo.
+     */
+    private fun comprobarNulos2(): Double {
         val calculadora = CalculadoraBinding.inflate(layoutInflater)
-        var num1 = calculadora.numero1.text.toString().toDouble()
-        var num2 = calculadora.numero2.text.toString().toDouble()
-        var nulo: Boolean = true
-        if (num1 == null || num1 == 0.0){
-            num1 = 0.0
-            nulo = false
-        }else if (num2 == null || num2 == 0.0){
-            num2 = 0.0
-            nulo = false
+        if (!calculadora.numero2.text.toString().isEmpty()){
+            num2 = calculadora.numero1.text.toString().toDouble()
         }
-        return nulo
+        return num2
+    }
+
+    /**
+     * Método que se encarga de comprobar si el valor del primer factor es nulo.
+     */
+    private fun comprobarNulos(): Double {
+        val calculadora = CalculadoraBinding.inflate(layoutInflater)
+        if (!calculadora.numero1.text.toString().isEmpty()){
+            num1 = calculadora.numero1.text.toString().toDouble()
+        }
+        return num1
     }
 }
