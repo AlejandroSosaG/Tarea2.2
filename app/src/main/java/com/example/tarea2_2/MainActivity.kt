@@ -50,8 +50,8 @@ class MainActivity : AppCompatActivity() {
          */
         calculadora.mas.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-                num1 = comprobarNulos()
-                num2 = comprobarNulos2()
+                //num1 = comprobarNulos()
+                //num2 = comprobarNulos2()
                 sol = num1 + num2
                 calculadora.sol.text = sol.toString()
             }
@@ -61,8 +61,8 @@ class MainActivity : AppCompatActivity() {
          */
         calculadora.menos.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-                num1 = comprobarNulos()
-                num2 = comprobarNulos2()
+                //num1 = comprobarNulos()
+                //num2 = comprobarNulos2()
                 sol = num1 - num2
                 calculadora.sol.text = sol.toString()
             }
@@ -72,8 +72,8 @@ class MainActivity : AppCompatActivity() {
          */
         calculadora.por.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-                num1 = comprobarNulos()
-                num2 = comprobarNulos2()
+                //num1 = comprobarNulos()
+                //num2 = comprobarNulos2()
                 sol = num1 * num2
                 calculadora.sol.text = sol.toString()
             }
@@ -83,8 +83,8 @@ class MainActivity : AppCompatActivity() {
          */
         calculadora.entre.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-                num1 = comprobarNulos()
-                num2 = comprobarNulos2()
+                //num1 = comprobarNulos()
+                //num2 = comprobarNulos2()
                 if (num2!=0.0) {
                     sol = num1 / num2
                     calculadora.sol.text = sol.toString()
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
+    /*
     /**
      * Método que comprueba si el segundo factor es nulo.
      */
@@ -115,4 +115,5 @@ class MainActivity : AppCompatActivity() {
         }
         return num1
     }
+     */
 }
