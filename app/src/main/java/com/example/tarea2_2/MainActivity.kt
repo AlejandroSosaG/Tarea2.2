@@ -9,8 +9,8 @@ import com.example.tarea2_2.databinding.ActivityMainBinding
 import com.example.tarea2_2.databinding.CalculadoraBinding
 
 class MainActivity : AppCompatActivity() {
-    val usuario: String = "ale"
-    val contraseña: String = "1234"
+    val usuario: String = ""
+    val contraseña: String = ""
     var sol: Double = 0.0
     var num1: Double = 0.0
     var num2: Double = 0.0
@@ -85,12 +85,11 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(p0: View?) {
                 num1 = comprobarNulos()
                 num2 = comprobarNulos2()
-                if (num2!=0.0)
+                if (num2!=0.0) {
                     sol = num1 / num2
-                else
-                    sol = "No se puede hacer".toDouble()
-
-                calculadora.sol.text = sol.toString()
+                    calculadora.sol.text = sol.toString()
+                }else
+                    calculadora.sol.text = "No se puede"
             }
         })
     }
@@ -100,7 +99,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun comprobarNulos2(): Double {
         val calculadora = CalculadoraBinding.inflate(layoutInflater)
-        if (!calculadora.numero2.text.toString().isEmpty()){
+        if (calculadora.numero2.text.toString().isNotBlank()){
             num2 = calculadora.numero1.text.toString().toDouble()
         }
         return num2
@@ -111,7 +110,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun comprobarNulos(): Double {
         val calculadora = CalculadoraBinding.inflate(layoutInflater)
-        if (!calculadora.numero1.text.toString().isEmpty()){
+        if (calculadora.numero1.text.toString().isNotBlank()){
             num1 = calculadora.numero1.text.toString().toDouble()
         }
         return num1
