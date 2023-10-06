@@ -9,8 +9,8 @@ import com.example.tarea2_2.databinding.ActivityMainBinding
 import com.example.tarea2_2.databinding.CalculadoraBinding
 
 class MainActivity : AppCompatActivity() {
-    val usuario: String = ""
-    val contraseña: String = ""
+    val usuario: String = "ale"
+    val contraseña: String = "1234"
     var sol: Double = 0.0
     var num1: Double = 0.0
     var num2: Double = 0.0
